@@ -1,5 +1,5 @@
 -- ==============================================
---  Script SQL - Sistema de Formulário
+--  Script SQL - Sistema de Formulário (CRUD)
 --  Execute este script no seu MySQL/MariaDB
 -- ==============================================
 
@@ -18,3 +18,13 @@ CREATE TABLE IF NOT EXISTS registros (
     criado_em DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ==============================================
+--  Operações suportadas pela api.php:
+--
+--  CREATE  → POST   api.php         (FormData)
+--  READ    → GET    api.php         (todos)
+--  READ    → GET    api.php?id=X    (por ID)
+--  UPDATE  → PUT    api.php         (JSON body)
+--  DELETE  → DELETE api.php?id=X
+-- ==============================================
