@@ -426,3 +426,157 @@ tbody tr:last-child td { border-bottom: none; }
   .card { padding: 1.5rem 1.25rem; }
   header { padding: 2rem 1rem 2rem; }
 }
+
+/* ── Coluna de ações ─────────────────────────────── */
+.td-actions {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.btn-action {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-grid;
+  place-items: center;
+  margin-left: 4px;
+}
+
+.btn-action:hover { color: var(--text); background: var(--border2); }
+
+.btn-edit:hover  { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.btn-delete:hover { border-color: var(--red);    color: var(--red);    background: var(--red-dim); }
+
+/* ── Modal base ──────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .65);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px) scale(.97);
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+}
+
+.modal-overlay.show .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-card--sm {
+  max-width: 400px;
+}
+
+.modal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .7;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.modal-close {
+  width: 30px;
+  height: 30px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  color: var(--text-muted);
+  font-size: .85rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all var(--transition);
+}
+
+.modal-close:hover { color: var(--text); background: var(--border2); }
+
+/* ── Modal actions ───────────────────────────────── */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-cancel {
+  padding: .75rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-cancel:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.btn-delete-confirm {
+  padding: .75rem 1.75rem;
+  background: var(--red);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.btn-delete-confirm:hover { background: #d94f4f; box-shadow: 0 4px 16px rgba(240,101,101,.35); }
+.btn-delete-confirm:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ── Responsivo para tabela com ações ────────────── */
+@media (max-width: 600px) {
+  .btn-action { width: 26px; height: 26px; font-size: .75rem; }
+  .modal-card { padding: 1.5rem 1.25rem; }
+  .modal-actions { flex-direction: column-reverse; }
+  .btn-cancel, .btn-delete-confirm, .btn-submit { width: 100%; justify-content: center; }
+}
