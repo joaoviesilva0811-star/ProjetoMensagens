@@ -118,6 +118,7 @@
               <th>E-mail</th>
               <th>Mensagem</th>
               <th>Data</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -130,6 +131,86 @@
 
   </div><!-- /main-grid -->
 </div><!-- /wrapper -->
+
+<!-- ════ MODAL DE EDIÇÃO ════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="card-title" id="modal-title" style="margin-bottom:0">
+        <span class="icon">✎</span>
+        Editar Registro
+      </div>
+      <button class="modal-close" id="modal-close" aria-label="Fechar">✕</button>
+    </div>
+
+    <form id="form-edit" novalidate autocomplete="off">
+      <input type="hidden" id="edit-id">
+
+      <!-- Nome -->
+      <div class="form-group">
+        <label for="edit-nome">Nome completo</label>
+        <input type="text" id="edit-nome" name="nome" placeholder="Ex.: Maria Silva" maxlength="120" required>
+        <span class="field-error" id="err-edit-nome"></span>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="edit-email">E-mail <span style="color:var(--accent)">(@gmail.com)</span></label>
+        <input type="email" id="edit-email" name="email" placeholder="seunome@gmail.com" required>
+        <span class="field-error" id="err-edit-email"></span>
+      </div>
+
+      <!-- Nova Senha (opcional) -->
+      <div class="form-group">
+        <label for="edit-senha">Nova senha <span style="color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0">(deixe em branco para manter)</span></label>
+        <input type="password" id="edit-senha" name="senha" placeholder="Mínimo 6 caracteres (opcional)">
+        <div class="strength-bar"><div class="strength-fill" id="edit-strength-fill"></div></div>
+        <span class="field-error" id="err-edit-senha"></span>
+      </div>
+
+      <!-- Mensagem -->
+      <div class="form-group">
+        <label for="edit-mensagem">Mensagem</label>
+        <textarea id="edit-mensagem" name="mensagem" placeholder="Escreva sua mensagem… (máx. 250 caracteres)" maxlength="250" required></textarea>
+        <div class="char-wrap">
+          <span class="field-error" id="err-edit-mensagem" style="margin-top:0"></span>
+          <span class="char-counter" id="edit-char-count">0/250</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="btn-cancel">Cancelar</button>
+        <button type="submit" class="btn-submit" id="btn-edit-submit" style="width:auto;padding:.75rem 2rem">
+          <span class="btn-spinner" id="btn-edit-spinner"></span>
+          <span id="btn-edit-text">Salvar alterações</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ════ MODAL DE CONFIRMAÇÃO DE EXCLUSÃO ════ -->
+<div class="modal-overlay" id="modal-delete" role="dialog" aria-modal="true">
+  <div class="modal-card modal-card--sm">
+    <div class="modal-header">
+      <div class="card-title" style="margin-bottom:0;color:var(--red)">
+        <span class="icon" style="background:var(--red-dim);border-color:rgba(240,101,101,.3)">✕</span>
+        Excluir registro
+      </div>
+    </div>
+    <p style="color:var(--text-muted);font-size:.93rem;margin-bottom:1.5rem;line-height:1.6">
+      Tem certeza que deseja excluir o registro de <strong id="delete-nome" style="color:var(--text)"></strong>?
+      <br>Esta ação <strong style="color:var(--red)">não pode ser desfeita</strong>.
+    </p>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" id="btn-delete-cancel">Cancelar</button>
+      <button type="button" class="btn-delete-confirm" id="btn-delete-confirm">
+        <span class="btn-spinner" id="btn-delete-spinner"></span>
+        <span id="btn-delete-text">Sim, excluir</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- Toast -->
 <div class="toast" id="toast" role="alert" aria-live="polite">
